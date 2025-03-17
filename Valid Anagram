@@ -1,0 +1,32 @@
+Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+
+An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+Constraints:
+
+    s and t consist of lowercase English letters.
+
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) {
+            return false; //Checking if the strings are the same lenghts
+        }
+
+        vector<int> count(26, 0); //Creating an empty vector with an int for every letter in the english alphabet
+        for (int i = 0; i < s.length(); i++) {
+            count[s[i] - 'a']++; // Increasing the integer corresponding to letter "s[i]"
+            count[t[i] - 'a']--;// Decreasing the integer corresponding to letter "t[i]"
+           
+        }
+
+        for (int val : count) {
+            if (val != 0) {
+                return false; //if any number isn't equal to zero that means that the letter counts are diffrent
+                              //in strings s and t
+            }
+        }
+        return true;
+    }
+};
